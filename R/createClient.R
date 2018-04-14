@@ -1,5 +1,8 @@
 #' createClient
 #'
+#' One way to organise your projects is by client. Consultthat works this way.
+#' This function creates a new client.
+#'
 #' @param name, string: name of client.
 #' @param path, string: path where you want to put the client directory
 #' @export

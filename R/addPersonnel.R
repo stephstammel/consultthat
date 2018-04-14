@@ -1,5 +1,13 @@
 #' addPersonnel
 #'
+#' Keeping track of who's working on your project with you can be really hard.
+#' Take notes! Make a personnel log.
+#' If the log has not been initialised, this function will create one.
+#' You can add new people to the log as you meet them.
+#' Currently, any edits to the file need to be manually made.
+#' The file is held as a csv so non-R users on your project can access it without
+#' R.
+#'
 #' @param consult_path , string: path the consulting files are found on
 #' @param client , string: name of the client
 #' @param name , string: name of personnel to be added to the log
