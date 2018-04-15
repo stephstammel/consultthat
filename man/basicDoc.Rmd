@@ -1,0 +1,36 @@
+---
+title: "Basic documentation of dataset"
+author: "Steph de Silva"
+output: html_document
+params:
+  filename: !r NA
+  type: !r "csv"
+---
+
+```{r setup, include=FALSE}
+# See https://rviews.rstudio.com/2017/11/07/automating-summary-of-surveys-with-rmarkdown/ for a really great overview of how this all works.
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(results = "asis")
+```
+
+# Basic documentation for `r params$filename`:
+```{r read_data, include = FALSE}
+if (params$type == "csv"){
+  data <- read.csv(params$filename)
+}
+```
+
+```{r describe_shape, include = FALSE}
+n_rows <- nrow(data)
+n_cols <- ncol(data)
+
+```
+
+The dataset `r params$filename` has `r n_rows` rows and `r n_cols` n columns. A brief overview of the contents is given as follows:
+
+```{r do_the_skim, echo = TRUE}
+skimr::skim(data)
+```
+
