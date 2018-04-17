@@ -13,8 +13,8 @@
 createClient <- function(name, path){
 
   path_client <- paste(path, name, sep = "/")
-  if (!dir.exists(path_client)){
+  if (dir.exists(path_client)){
     stop("this client already exists! Go you!")
   }
-  dir.create(pathClient)
+  dir.create(path_client)
 }
