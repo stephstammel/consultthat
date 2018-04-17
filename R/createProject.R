@@ -25,6 +25,34 @@ createProject <- function(consult_path, client, project_name){
   # create subdirectory for meetings
   meeting_path <- paste(project_path, "meeting", sep = "/")
   dir.create(meeting_path)
+  # create subdirectory for project documents
+  output_path <- paste(project_path, "project_documents", sep = "/")
+  dir.create(output_path)
+  # create subdirectory for client side project docs
+  output_path <- paste(project_path, "project_documents", "client_side", sep = "/")
+  dir.create(output_path)
+  # create subdirectory for company side project docs
+  output_path <- paste(project_path, "project_documents", "company_side", sep = "/")
+  dir.create(output_path)
+  # project initiation documents
+  output_path <- paste(project_path, "project_documents", "project_initiation", sep = "/")
+  dir.create(output_path)
+  # project financials documents
+  output_path <- paste(project_path, "project_documents", "financials", sep = "/")
+  dir.create(output_path)
+  output_path <- paste(project_path, "project_documents", "financials", "invoices_payable", sep = "/")
+  dir.create(output_path)
+  output_path <- paste(project_path, "project_documents", "financials", "invoices_receivable", sep = "/")
+  dir.create(output_path)
+  # projects time management documents
+  output_path <- paste(project_path, "project_documents", "time_management", sep = "/")
+  dir.create(output_path)
+  # projects planning documents
+  output_path <- paste(project_path, "project_documents", "planning", sep = "/")
+  dir.create(output_path)
+  # mielstones summaries
+  output_path <- paste(project_path, "project_documents", "planning", "milestone_summaries", sep = "/")
+  dir.create(output_path)
   # create subdirectory for outputs
   output_path <- paste(project_path, "outputs", sep = "/")
   dir.create(output_path)
