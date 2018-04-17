@@ -18,16 +18,17 @@
 #'
 createProject <- function(consult_path, client, project_name){
   project_path <- paste(consult_path, client, project_name, sep = "/")
-  if (!dir.exists(project_path)){
+  if (dir.exists(project_path)){
     stop("this project already exists! Go you!")
   }
   create_package(project_path)
-  # create subdirectory for meetings
-  meeting_path <- paste(project_path, "meeting", sep = "/")
-  dir.create(meeting_path)
+
   # create subdirectory for project documents
   output_path <- paste(project_path, "project_documents", sep = "/")
   dir.create(output_path)
+  # create subdirectory for meetings
+  meeting_path <- paste(project_path,"project_documents", "meeting", sep = "/")
+  dir.create(meeting_path)
   # create subdirectory for client side project docs
   output_path <- paste(project_path, "project_documents", "client_side", sep = "/")
   dir.create(output_path)

@@ -27,3 +27,15 @@
 
 ## Note: items added to the project package don't need file paths because
 ## You assume you're working in that package/project. YAY!
+
+
+## Note on basic data documentation function
+# the rmd is downloaded from a speicfic github commit. Need to keep up with this.
+# have managed download, but cannot parse with parameters.
+# suggest removing for the moment (new github commit link) and going again.
+# might need to look at unparameterised .rmd for th emoment.
+
+# Priority list
+# time sheet tracker function: punch in/punch out create on in if does not exist.
+# issue tracker function - add issues, close issues, view issues
+# sample docs for the folders
