@@ -3,7 +3,7 @@ title: "Basic documentation of dataset"
 author: "Steph de Silva"
 output: html_document
 params:
-  filename: !r NA
+  filename: !r "data.csv"
   type: !r "csv"
 ---
 

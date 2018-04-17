@@ -20,7 +20,8 @@ basicDoc <- function(data_path, file, type){
     f_name <- strsplit(file, ".")
     f_name <- f_name[1]
     lib_location <- .libPaths()
-    mkdown_location <-
+    mkdown_location <-getURL("https://raw.githubusercontent.com/stephdesilva/consultthat/master/R/basicDoc.Rmd",
+                             ssl.verifypeer = FALSE)
     rmarkdown::render(mkdown_location, params = list(filename = file_name,
                                                      type = "csv"),
            output_file = paste(data_path, "documentation/",
