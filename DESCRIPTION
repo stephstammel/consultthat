@@ -13,4 +13,5 @@ Imports:
     usethis,
     knitr,
     rmarkdown,
-    skimr
+    skimr,
+    RCurl
