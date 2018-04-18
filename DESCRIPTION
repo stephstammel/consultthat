@@ -1,11 +1,15 @@
 Package: consultthat
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Workflow tools for consultants using R.
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Steph de Silva 
+Maintainer: Steph de Silva <steph@rex-analytics.com>
+Description: Workflow tools for consultants using R.
+    Setting up a new project can be time consuming for consultants. While there
+    are many tools available to help you do this, if your workflow is primarily
+    R based, it can be convenient to have a basic set of management tools available
+    from R. Consultthat is built on top of Usethis and works on a similar principle:
+    automate that which can be automated.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
