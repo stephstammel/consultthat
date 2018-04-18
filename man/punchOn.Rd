@@ -20,6 +20,13 @@ Record the time you spend on a project.
 punchOn will record the system time you started in the current working directory.
 The time sheet will be located in the client directory and will record all
 work for that client's projects. If the time sheet does not exist, it will create it.
+
+Time sheet will be located in /project/project_documents/time_management.
+
+Note: this is tidy time sheet management. Each project can generate a timesheet,
+but you can append them all to analyse your overall time management.
+Output as a .csv, this is readable for those who may not be using R. You can read
+it into R and calculate time spent etc. as required.
 }
 \examples{
 

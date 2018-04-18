@@ -16,4 +16,5 @@ so you can track what part of the project you were working on. E.g. 'data analys
 \description{
 Record when you finished working on a project, with notes.
 To be used in conjunction with punchOn().
+Time sheet will be located in /project/project_documents/time_management.
 }
