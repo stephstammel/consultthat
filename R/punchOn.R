@@ -22,8 +22,7 @@
 #'
 #' @examples
 #'
-#' punchOn("~/practice", "RMiddling", "project2",
-#' "analysis", "clean data", "Steph")
+#' punchOn("clean data", "Steph")
 #'
 punchOn <- function(category, notes){
 
@@ -35,7 +34,8 @@ punchOn <- function(category, notes){
                                  "notes" = notes, "punch_on" = Sys.time(),
                                   "punch_off" = NA, "state" = "on")
   } else {
-    time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE)
+    time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE, sep = ",",
+                                colClasses = rep('character',6))
     if (time_log[nrow(time_log), 6] == "on"){
       print("You're already punched on for this project")
       time_log[nrow(time_log), 6] <- "off"

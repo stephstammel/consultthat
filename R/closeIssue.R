@@ -22,9 +22,9 @@ closeIssue <- function(user, ID, notes){
   } else {
 
     issue_log <- utils::read.csv(issue_file, stringsAsFactors = FALSE)
-    issue_log[which(issue_log[,1] == ID),5] = "closed"
-    issue_log[which(issue_log[,1] == ID),6] = notes
-    issue_log[which(issue_log[,1] == ID),7] = user
+    issue_log[which(issue_log[,1] == ID),6] = "closed"
+    issue_log[which(issue_log[,1] == ID),7] = notes
+    issue_log[which(issue_log[,1] == ID),8] = user
 
     utils::write.csv(issue_log, file = issue_file, row.names = FALSE)
   }

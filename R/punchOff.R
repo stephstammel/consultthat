@@ -23,12 +23,14 @@ punchOff <- function(category, notes){
   if(!file.exists(time_file)){
     stop("No timesheet exists for this project. You can't punch off when you never punched on :)")
   } else {
-    time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE)
+    time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE, sep = ",",
+                                colClasses = rep('character',6))
     if (time_log[nrow(time_log), 6] == "off"){
       stop("You're already punched off for this client.")
     }
     time_log[nrow(time_log), 5] <- Sys.time()
     time_log[nrow(time_log), 6] <- "off"
+
   }
   utils::write.csv(time_log, file = time_file, row.names = FALSE)
 }

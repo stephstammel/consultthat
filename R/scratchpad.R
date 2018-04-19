@@ -16,7 +16,6 @@
 # sample project initiation note
 # sample data ingest form
 #
-# issue tracker function - add issues, mark issues checked functions
 
 ## Note: items added to the project package don't need file paths because
 ## You assume you're working in that package/project. YAY!
