@@ -17,6 +17,7 @@
 #'
 #'
 createProject <- function(consult_path, client, project_name){
+  requireNamespace("usethis")
   project_path <- paste(consult_path, client, project_name, sep = "/")
   if (dir.exists(project_path)){
     stop("this project already exists! Go you!")

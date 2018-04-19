@@ -30,5 +30,7 @@
 # might need to look at unparameterised .rmd for th emoment.
 
 # Priority list
-# issue tracker function - add issues, close issues, view issues
+# note that the no visible global function definition for ... needs attending to
+# call library at time of issue? Put something in namespace?
+# vignette
 # sample docs for the folders

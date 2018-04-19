@@ -26,6 +26,7 @@
 #'
 addPersonnel <- function(consult_path, client, name, contact_details,
                          projects, notes){
+  requireNamespace("utils")
   client_file <- paste(consult_path, client, "personnel_log.csv", sep = "/")
   if(!file.exists(client_file)){
     personnel_log <- data.frame("name" = name, "contact_details" = contact_details,
@@ -40,6 +41,6 @@ addPersonnel <- function(consult_path, client, name, contact_details,
     personnel_log <- rbind(personnel_log, person)
   }
 
-  write.csv(personnel_log, file = client_file)
+  write.csv(personnel_log, file = client_file, row.names = FALSE)
 
 }

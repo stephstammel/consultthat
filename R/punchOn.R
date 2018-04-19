@@ -22,9 +22,10 @@
 #'
 #' @examples
 #'
-#' punchOn("~/practice", "RMiddling", "secondProject", "data analysis", "data was really awful")
+#' punchOn("~/practice", "RMiddling", "secondProject", "data analysis", "data was really awful", "Steph")
 #'
 punchOn <- function(category, notes){
+  requireNamespace("utils")
   current_project <- getwd()
   time_file <- paste(current_project, "project_documents", "time_management", "time_sheet.csv", sep = "/")
 

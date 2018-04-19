@@ -1,6 +1,6 @@
 Package: consultthat
 Type: Package
-Title: Workflow tools for consultants using R.
+Title: Workflow tools for consultants using R
 Version: 0.1.0
 Author: Steph de Silva 
 Maintainer: Steph de Silva <steph@rex-analytics.com>
@@ -13,10 +13,11 @@ Description: Workflow tools for consultants using R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: 
+Imports:
     usethis,
     knitr,
     rmarkdown,
     skimr,
-    RCurl
+    RCurl,
+    utils
 RoxygenNote: 6.0.1

@@ -16,7 +16,7 @@ createBasicDataDoc <- function(consult_path, client, project){
 ## perhaps download the relevant file from GH to use as a template.
 
 basicDoc <- function(data_path, file, type){
-  require(RCurl)
+  requireNamespace(RCurl)
   if (type == "csv"){
     file_name <- paste(data_path, file, sep = "/")
     f_name <- strsplit(file, ".")

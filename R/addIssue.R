@@ -11,26 +11,29 @@
 #' @param notes, string: it's often worthwile to add some notes to help you when you
 #' pick up the project again. This might be a brief run down of what the problem is,
 #' or it could be a helpful way to store and file useful links, tips etc.
+#' @param user, string: who added this issue?
 #'
 #' @export
 #'
 #' @examples
 #'
-#' addIssue("stupid bug 3", "breaking code", "I can't work out where that damn missing bracket is. WHY?!?!")
+#' # addIssue("stupid bug 3", "breaking code",
+#' # "I can't work out where that damn missing bracket is. WHY?!?!")
 #'
 #'
-addIssue <- function(ID, category, notes){
+addIssue <- function(ID, user, category, notes){
+  requireNamespace("utils")
   current_project <- getwd()
   issue_file <- paste(current_project, "project_documents", "planning", "issues.csv", sep = "/")
   if(!file.exists(issue_file)){
-    issue_log <- data.frame("ID" = ID, "project" = current_project, "category" = category,
-                           "opening notes" = notes, "state" = "open", "closing notes" = NA)
+    issue_log <- data.frame("ID" = ID, "project" = current_project, "added_by" = user, "category" = category,
+                           "opening notes" = notes, "state" = "open", "closing notes" = NA, "closed_by" = NA)
   } else {
-    issue_log <- read.csv(issue_file, stringsAsFactors = FALSE)
+    issue_log <- utils::read.csv(issue_file, stringsAsFactors = FALSE)
 
-    issue <- c(ID, current_project, category, notes, "open")
+    issue <- c(ID, current_project, user, category, notes, "open", NA, NA)
     issue_log <- rbind(issue_log, issue)
   }
-  write.csv(issue_log, file = issue_file, row.names = FALSE)
+  utils::write.csv(issue_log, file = issue_file, row.names = FALSE)
 
 }

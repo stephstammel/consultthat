@@ -11,6 +11,7 @@
 #' timesheet()
 #'
 timesheet <- function(){
+  requireNamespace("utils")
   current_project <- getwd()
   time_file <- paste(current_project, "project_documents", "time_management", "time_sheet.csv", sep = "/")
   if(!file.exists(time_file)){

@@ -12,6 +12,7 @@
 #' issues()
 #'
 issues <- function(){
+  requireNamespace("utils")
   current_project <- getwd()
   issue_file <- paste(current_project, "project_documents", "planning", "issues.csv", sep = "/")
   if(!file.exists(issue_file)){
