@@ -15,14 +15,11 @@
 #'
 #' @export
 #'
-#' @examples
-#'
-#' # addIssue("stupid bug 3", "breaking code",
-#' # "I can't work out where that damn missing bracket is. WHY?!?!")
+#' @examples addIssue("stupid bug 3", "Steph", "breaking code", "Missing bracket?")
 #'
 #'
 addIssue <- function(ID, user, category, notes){
-  requireNamespace("utils")
+
   current_project <- getwd()
   issue_file <- paste(current_project, "project_documents", "planning", "issues.csv", sep = "/")
   if(!file.exists(issue_file)){

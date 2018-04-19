@@ -6,7 +6,6 @@
 # https://github.com/r-lib/usethis
 
 #TODO
-# add to the file structure
 
 # project initiation folder - with note about PIN, RFP, tech specs, milestones,
 # additional requirements

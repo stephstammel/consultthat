@@ -11,10 +11,9 @@
 #'
 #' @examples
 #'
-#' closeIssue("stupid bug 3", "Used bug tracker. It was awesome.")
+#' closeIssue("Steph", "stupid bug 3", "Used bug tracker. It was awesome.")
 #'
 closeIssue <- function(user, ID, notes){
-  requireNamespace("utils")
   current_project <- getwd()
   issue_file <- paste(current_project, "project_documents", "planning",
                       "issues.csv", sep = "/")
@@ -22,11 +21,11 @@ closeIssue <- function(user, ID, notes){
     stop("You don't have any issues logged for this project.")
   } else {
 
-    issue_log <- read.csv(issue_file, stringsAsFactors = FALSE)
+    issue_log <- utils::read.csv(issue_file, stringsAsFactors = FALSE)
     issue_log[which(issue_log[,1] == ID),5] = "closed"
     issue_log[which(issue_log[,1] == ID),6] = notes
     issue_log[which(issue_log[,1] == ID),7] = user
 
-    write.csv(issue_log, file = issue_file, row.names = FALSE)
+    utils::write.csv(issue_log, file = issue_file, row.names = FALSE)
   }
 }

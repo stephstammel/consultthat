@@ -4,9 +4,11 @@
 \alias{closeIssue}
 \title{closeIssue}
 \usage{
-closeIssue(ID, notes)
+closeIssue(user, ID, notes)
 }
 \arguments{
+\item{user, }{string: the person who closed the issue.}
+
 \item{ID, }{string: the ID of the issue you want to close.}
 
 \item{notes, }{string: any closing notes you want to add to the issue.}
@@ -17,6 +19,6 @@ Add notes on how you closed it for future reference.
 }
 \examples{
 
-closeIssue("stupid bug 3", "Used bug tracker. It was awesome.")
+closeIssue("Steph", "stupid bug 3", "Used bug tracker. It was awesome.")
 
 }

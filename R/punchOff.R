@@ -13,20 +13,22 @@
 #' @export
 #'
 #' @examples
+#' punchOff("factorisation", "Completed.")
+#'
 punchOff <- function(category, notes){
-  requireNamespace("utils")
+
   current_project <- getwd()
   time_file <- paste(current_project, "project_documents", "time_management", "time_sheet.csv", sep = "/")
 
   if(!file.exists(time_file)){
     stop("No timesheet exists for this project. You can't punch off when you never punched on :)")
   } else {
-    time_log <- read.csv(time_file, stringsAsFactors = FALSE)
+    time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE)
     if (time_log[nrow(time_log), 6] == "off"){
       stop("You're already punched off for this client.")
     }
     time_log[nrow(time_log), 5] <- Sys.time()
     time_log[nrow(time_log), 6] <- "off"
   }
-  write.csv(time_log, file = time_file, row.names = FALSE)
+  utils::write.csv(time_log, file = time_file, row.names = FALSE)
 }

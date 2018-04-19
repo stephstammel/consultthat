@@ -26,14 +26,14 @@
 #'
 addPersonnel <- function(consult_path, client, name, contact_details,
                          projects, notes){
-  requireNamespace("utils")
+
   client_file <- paste(consult_path, client, "personnel_log.csv", sep = "/")
   if(!file.exists(client_file)){
     personnel_log <- data.frame("name" = name, "contact_details" = contact_details,
                                 "projects" = projects, "notes" = notes)
   } else {
 
-    personnel_log <- read.csv(client_file, stringsAsFactors = FALSE)
+    personnel_log <- utils::read.csv(client_file, stringsAsFactors = FALSE)
     person <- c(name, contact_details, projects, notes)
     if(person[1] %in% personnel_log[,1]){
       stop("this person is already in the file. Do you need to change an entry? Do it manually please right now :)")
@@ -41,6 +41,6 @@ addPersonnel <- function(consult_path, client, name, contact_details,
     personnel_log <- rbind(personnel_log, person)
   }
 
-  write.csv(personnel_log, file = client_file, row.names = FALSE)
+  utils::write.csv(personnel_log, file = client_file, row.names = FALSE)
 
 }

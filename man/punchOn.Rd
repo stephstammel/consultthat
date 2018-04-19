@@ -30,6 +30,7 @@ it into R and calculate time spent etc. as required.
 }
 \examples{
 
-punchOn("~/practice", "RMiddling", "secondProject", "data analysis", "data was really awful")
+punchOn("~/practice", "RMiddling", "project2",
+"analysis", "clean data", "Steph")
 
 }

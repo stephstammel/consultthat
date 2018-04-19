@@ -19,6 +19,7 @@ normal package structure and provides subdirectories for data, outputs (client
 facing and internal), meetings etc.
 }
 \examples{
+createProject("~/practice", "RStars", "firstProject")
 
 
 

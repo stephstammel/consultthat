@@ -19,7 +19,7 @@ issues <- function(){
     issue_log <- NULL
     stop("No issues exist yet. You probably aren't looking hard enough ;)")
   } else {
-    issue_log <- read.csv(issue_file, stringsAsFactors = FALSE)
+    issue_log <- utils::read.csv(issue_file, stringsAsFactors = FALSE)
     issue_log <- as.data.frame(issue_log)
   }
   return(issue_log)

@@ -22,10 +22,11 @@
 #'
 #' @examples
 #'
-#' punchOn("~/practice", "RMiddling", "secondProject", "data analysis", "data was really awful", "Steph")
+#' punchOn("~/practice", "RMiddling", "project2",
+#' "analysis", "clean data", "Steph")
 #'
 punchOn <- function(category, notes){
-  requireNamespace("utils")
+
   current_project <- getwd()
   time_file <- paste(current_project, "project_documents", "time_management", "time_sheet.csv", sep = "/")
 
@@ -34,7 +35,7 @@ punchOn <- function(category, notes){
                                  "notes" = notes, "punch_on" = Sys.time(),
                                   "punch_off" = NA, "state" = "on")
   } else {
-    time_log <- read.csv(time_file, stringsAsFactors = FALSE)
+    time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE)
     if (time_log[nrow(time_log), 6] == "on"){
       print("You're already punched on for this project")
       time_log[nrow(time_log), 6] <- "off"
@@ -43,5 +44,5 @@ punchOn <- function(category, notes){
     punch <- c(current_project, category, notes, Sys.time(), NA, "on")
     time_log <- rbind(time_log, punch)
   }
-  write.csv(time_log, file = time_file, row.names = FALSE)
+  utils::write.csv(time_log, file = time_file, row.names = FALSE)
 }
