@@ -1,6 +1,8 @@
 createBasicDocumentation <- function(){
-  requireNamespace("knitr")
-  requireNamespace("rmarkdown")
+  requireNamespace(pacman)
+  p_load(knitr, rmarkdown)
+
+
   data_directory <- paste(getwd(), "/data", sep = "")
   utils::download.file("https://raw.githubusercontent.com/stephdesilva/consultthat_scripts/master/basicDocumentation.Rmd",
                        paste(getwd(), "/data/documentation/basicDocumentation.rmd", sep = ""))
