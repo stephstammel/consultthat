@@ -8,7 +8,7 @@ createBasicDocumentation <- function(){
 
   files <- list.files(path = data_directory, recursive = FALSE)
   for (i in 1:length(files)){
-      knitr::render(paste(data_directory,"/documentation/basicDocumentation.rmd", sep = ""),
+      rmarkdown::render(paste(data_directory,"/documentation/basicDocumentation.rmd", sep = ""),
              params = list(nameFile = files[i],
                            fileType = ".csv"),
              output_file = paste("Basic Documentation", files[i], ".html", sep = ""))
