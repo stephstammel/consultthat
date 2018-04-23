@@ -25,7 +25,7 @@
 #'
 #' punchOn("Steph", "clean data", "it's a mess")
 #'
-punchOn <- function(name, category, notes){
+punchOn <- function(name, category = NA, notes = NA){
 
   current_project <- getwd()
   file_name <- paste(name, "time_sheet.csv", sep = "_")

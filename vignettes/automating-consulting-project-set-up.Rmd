@@ -96,6 +96,48 @@ Project initiation coems with alot of documentation - requests for proposals, re
 
 Time management can be a pain in the posterior distribution, but when you're charging by the hour, it's essential. This folder can be used for that in conjunction with the `punchOn()` and `punchOff()` functions.
 
+To punch on for a project and start recording the time you spend on it, use `punchOn()`. You can designate on a category of work you are completing to further break down your time keeping and you can add notes if you like.
+
+```{r punchOn, echo = TRUE}
+name <- "Steph"
+category <- "Data analysis"
+notes <- "fun times to be had!"
+
+punchOn(name, category, notes)
+```
+
+If you try to punch on again without punching off first, the function will let you know.
+
+```{r punchOnAgain, echo = TRUE}
+name <- "Steph"
+category <- "more analysis"
+notes <- "this is not as fun"
+
+punchOn(name, category, notes)
+```
+
+To punch off the project, you can choose another category to end with, if you like, but you can only be punched into one category per project at a time.
+
+```{r punchOff, echo = TRUE}
+name <- "Steph"
+category <- "more analysis"
+notes <- "this was not awful"
+
+punchOff(name, category, notes)
+```
+
+If multiple people are working on the same project, they will each have their own timesheet generated.
+
+```{r garyOn, echo = TRUE}
+name <- "Gary"
+category <- "something over complicated"
+notes <- "dubious value"
+
+punchOn(name, category, notes)
+```
+
+
+
 ## Outputs
 
 ### Client Facing

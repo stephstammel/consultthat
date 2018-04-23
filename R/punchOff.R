@@ -16,7 +16,7 @@
 #' @examples
 #' punchOff("Steph", "factorisation", "Completed.")
 #'
-punchOff <- function(name, category, notes){
+punchOff <- function(name, category = NA, notes = NA){
 
   current_project <- getwd()
   file_name <- paste(name, "time_sheet.csv", sep = "_")
