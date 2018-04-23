@@ -1,0 +1,108 @@
+---
+title: "Automating a Consulting Project Set Up"
+author: "Steph de Silva"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Automating a Consulting Project Set Up}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Automating a consulting project workflow
+
+There's been a great deal of really useful work around data science workflows in the last couple of years and if ![you've followed Jenny Bryan's work at all](https://github.com/jennybc), you'll know exactly what I mean.
+
+In consulting, the data science workflow is also critical, but it's wrapped up with some extra management challenges. In addition to code and data, there's a series of documents, people and timing to manage.
+
+R provides a great toolkit for dealing with this, `consultthat` builds on tools like `usethis` and `rmarkdown` to capitalise on that. There's a bunch of great tools out there for these issues, but if your main workflow is in R, it can be efficient to keep it all together.
+
+At the moment, `consultthat` is in testing stages: it's not stable yet! Feedback, issues, bug catches and suggestions are all welcome.
+
+`consultthat` is currently available on Github. To install the package, you will need the `devtools` package.
+
+```{r installing, echo = TRUE}
+# install.packages("devtools") # you only need this if you don't have devtools already
+# library(devtools) 
+# install_github("stephdesilva/consultthat") # install the package
+library(consultthat) # use the package
+```
+
+# Clients
+
+`Consultthat` organises consulting projects by client. This is useful as you may be working with repeat clients over time.
+
+Before you start a project, you need to create a client directory for your project to be stored in. Firstly, decide where the client directory should be located, in this case I'll use `~/practice` for convenience. You'll also need a name for your client!
+
+```{r createClient, echo = TRUE}
+clientPath <- "~/practice"
+clientName <- "RStars"
+createClient(clientName, clientPath)
+```
+
+You can refer to the vignette `R as an aide de memoir for consulting` to find out how `consultthat` helps you keep track of people in an organisation from project to project.
+
+# Create a project 
+
+The whole purpose of data science consulting is projects. Once you have your client directory set up, you can start to add projects to it. To do this, you'll need the path your consulting projects are set up in, the client name and a project name.
+
+```{r createNewProj, echo = TRUE}
+projName <- "firstProject"
+createProject(clientPath, clientName, projName)
+```
+
+This function automatically sets up a regular R package using `usethis`, but it also adds some other features to help you keep track of everything that goes into a consulting project.
+
+You may not use every directory the function creates and that's OK - this is just one approach. Use what works!
+
+Here's a rundown of the project directories created and how you can use them if you choose.
+
+## Project documents
+
+The `/project_documents` directory is a useful catchall for all the parts of a data science consulting project that aren't R scripts, data or outputs. These can be many, varied and hard to keep track of. `createProject()` adds a number of sub directories automatically to help you with this, if you choose.
+
+### Client Side
+
+This subdirectory is where you can store all the client documentation that comes with a project. Letters of engagement, client backgrounding, client's own data documentation (where that exists) and so on.
+
+### Company Side
+
+If you're not an independent/solo operator, or you're working with a team, this directory can be used to store all the company/team side documentation for the project. Other people's initiation notes, reports etc.
+
+### Financials
+
+Financials come in two types here: 
+
+    * `invoices_payable`, for when you need to pay something. This can be useful for storing invoices for travel that need later reimbursement from the client.
+    * `invoices_receivable`, a useful spot for storing invoices you issue to the client.
+
+### Meetings
+
+The meetings seem never-ending, but where do you keep all your notes? Right here! Even if you're not a copious note taker, it can be useful to write up a quick meeting summary and send it back to the client after each meeting. This is a useful checkpoint to make sure everyone is on the same page. 
+
+(And if it turns out you're not on the same page a ways down the track, you can point to this report to show the client they implicitly agreed that the track you are on is the right one. Do this carefully, but it's a good safety net for you.)
+
+### Planning
+
+Gantt charts, project plans, timelines: no plan every survives first contact with reality, but it's useful to have one anyway. Store them here!
+
+There is also a subdirectory for `milestone_summaries`. In longer projects, there's often agreed-upon milestones. Even if you aren't required to formally report on them, it's often useful to provide a brief summary to the client, even if it's just a quick email. See `meetings` above for why.
+
+### Project Initiation
+
+Project initiation coems with alot of documentation - requests for proposals, requests for information, lots of back and forth discussion about data and its format. Store them here!
+
+### Time Management
+
+Time management 
+
+## Outputs
+
+### Client Facing
+### Internal
+
+# Log issues
+
+# Document your data
+
+

@@ -36,7 +36,7 @@ addPersonnel <- function(consult_path, client, name, contact_details,
     personnel_log <- utils::read.csv(client_file, stringsAsFactors = FALSE)
     person <- c(name, contact_details, projects, notes)
     if(person[1] %in% personnel_log[,1]){
-      stop("this person is already in the file. Do you need to change an entry? Do it manually please right now :)")
+      stop("this person is already in the file. Do you need to change an entry? :)")
     }
     personnel_log <- rbind(personnel_log, person)
   }

@@ -1,0 +1,61 @@
+---
+title: "R as an aide de memoire in consulting"
+author: "Steph de Silva"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{R as an aide de memoire in consulting}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`Consultthat` also provides a simple tool for keeping track of the people you're working with at a client. It's not an address book: there's better tools for that out there. It's intended as more of an _aide de memoir_. If you met five people at the kick off meeting, who was concerned about data quality and who thought R was a great option? This is useful information to jot down somewhere so that over a long-running project you can refresh your memory as you go.
+
+It's also useful as you're switching between projects or repeat clients to remember a couple of pertinent details.
+
+To add a person to the personnel log, use the `addPersonnel()` function. If a personnel log has not been created for this client, the function will create one. A client needs to be created before a personnel log for the client.
+
+```{r createClient, echo = TRUE}
+library(consultthat)
+clientPath <- "~/practice"
+clientName <- "R_is_great"
+createClient(clientName, clientPath)
+```
+
+This information is stored as a `.csv` so that non-R users on your project can add to, access and edit it easily. 
+
+
+```{r addPeople, echo = TRUE}
+
+personName <- "Joanna Blogs"
+contactDetails <- "joBlogs@RStars.com"
+projects <- "The one with R in it, also something with SQL."
+notes <- "Thought python was also awesome, interested in working on some stuff there."
+
+addPersonnel(clientPath, clientName, 
+             personName, contactDetails, 
+             projects, notes)
+
+```
+
+You can go on and add all the people you'd like to remember from one project to another. (This function may be inspired by my terrible memory for both people and numbers.)
+
+```{r morePeople, echo = TRUE}
+personName <- "Daenerys Targarean"
+contactDetails <- "dragons@RStars.com"
+projects <- "Bending continents to her will, also something with SQL."
+notes <- "Do not cross. Also, really loves her pets."
+
+addPersonnel(clientPath, clientName, 
+             personName, contactDetails, 
+             projects, notes)
+
+```
+
+You can return your personnel list for a client at any time from within your project with `people()`.
+
+```{r findPeople, echo = TRUE}
+people(clientPath, clientName)
+```
+
+This is a tidy data frame, so do with that what you will!

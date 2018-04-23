@@ -23,13 +23,13 @@ createProject <- function(consult_path, client, project_name){
   if (dir.exists(project_path)){
     stop("this project already exists! Go you!")
   }
-  create_package(project_path)
+  usethis::create_package(project_path)
 
   # create subdirectory for project documents
   output_path <- paste(project_path, "project_documents", sep = "/")
   dir.create(output_path)
   # create subdirectory for meetings
-  meeting_path <- paste(project_path,"project_documents", "meeting", sep = "/")
+  meeting_path <- paste(project_path,"project_documents", "meetings", sep = "/")
   dir.create(meeting_path)
   # create subdirectory for client side project docs
   output_path <- paste(project_path, "project_documents", "client_side", sep = "/")
