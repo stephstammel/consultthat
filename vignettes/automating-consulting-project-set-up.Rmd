@@ -136,14 +136,49 @@ notes <- "dubious value"
 punchOn(name, category, notes)
 ```
 
-
+You can retrieve a person's timesheet at any time as a data frame with `timesheet(name)`. This is a tidy data frame: you know what that means!
 
 ## Outputs
 
+There are a lot of outputs in consulting: documents, presentations, dashboards. Some need to go to the client, some need to be distributed internally: making sure you don't confuse the two is important!
+
 ### Client Facing
+
+Subdirectory for analytics objects _ready to go to client_. Anything in this directory could end up in front of the client, use this carefully!
+
 ### Internal
 
+Subdirectory for analytics objects _ready for internal validation_. Anything in this directory could be seen by your colleagues. Keep it nice, people.
+
 # Log issues
+
+There are some excellent issue trackers out there, but if a simple system is all you need, then keeping it all in R can have some advantages. You can log issues using `addIssue()`.
+
+Issues are identified with an ID- this can be numeric or something easy to type and remember. You can create a category to file it under, or leave it blank, you can also add notes if you wish.
+
+```{r addAnIssue, echo = TRUE}
+issueID <- "bug fix 4000"
+addIssue(issueID, "Steph")
+```
+
+You can add multiple issues, with more detail if you wish.
+
+```{r moreIssue, echo = TRUE}
+issueID2 <- "ID0001"
+addIssue(issueID2, "Gary", category = "unit tests", notes = "We need them")
+```
+
+You can close an issue at any time:
+
+```{r closeIssue, echo = TRUE}
+closeIssue(user = "Steph", ID = "ID0001", notes = "I added them.")
+```
+
+You can retrieve the database of open and closed issues as a dataframe at any time. This is tidy, you know what to do.
+
+```{r getIssuesDF, echo = TRUE}
+issues()
+```
 
 # Document your data
 

@@ -13,7 +13,7 @@
 #'
 #' closeIssue("Steph", "stupid bug 3", "Used bug tracker. It was awesome.")
 #'
-closeIssue <- function(user, ID, notes){
+closeIssue <- function(user, ID, notes = NA){
   current_project <- getwd()
   issue_file <- paste(current_project, "project_documents", "planning",
                       "issues.csv", sep = "/")

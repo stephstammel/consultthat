@@ -18,7 +18,7 @@
 #' @examples addIssue("stupid bug 3", "Steph", "breaking code", "Missing bracket?")
 #'
 #'
-addIssue <- function(ID, user, category, notes){
+addIssue <- function(ID, user, category = NA, notes = NA){
 
   current_project <- getwd()
   issue_file <- paste(current_project, "project_documents", "planning", "issues.csv", sep = "/")
