@@ -4,7 +4,7 @@
 \alias{closeIssue}
 \title{closeIssue}
 \usage{
-closeIssue(user, ID, notes)
+closeIssue(user, ID, notes = NA)
 }
 \arguments{
 \item{user, }{string: the person who closed the issue.}

@@ -4,7 +4,10 @@
 \alias{timesheet}
 \title{timesheet}
 \usage{
-timesheet()
+timesheet(name)
+}
+\arguments{
+\item{name, }{person you'd like to return a timesheet for}
 }
 \value{
 timesheet, a data frame.
@@ -15,6 +18,6 @@ If no timesheet exists for this project because you have not punchedIn,
 NULL will be returned instead.
 }
 \examples{
-timesheet()
+timesheet("Gary")
 
 }

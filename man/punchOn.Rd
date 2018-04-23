@@ -4,9 +4,11 @@
 \alias{punchOn}
 \title{punchOn}
 \usage{
-punchOn(category, notes)
+punchOn(name, category = NA, notes = NA)
 }
 \arguments{
+\item{name, }{string: person who is punching on for this project}
+
 \item{category, }{string: category of work. Divide your work up into 'buckets'
 so you can track what part of the project you were working on. E.g. 'data analysis',
 'modelling', 'write up', 'meeting'.}
@@ -30,6 +32,6 @@ it into R and calculate time spent etc. as required.
 }
 \examples{
 
-punchOn("clean data", "Steph")
+punchOn("Steph", "clean data", "it's a mess")
 
 }

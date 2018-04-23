@@ -4,7 +4,7 @@
 \alias{addIssue}
 \title{addIssue}
 \usage{
-addIssue(ID, user, category, notes)
+addIssue(ID, user, category = NA, notes = NA)
 }
 \arguments{
 \item{ID, }{string: choose an ID that you will use to close the issue or make changes to it.

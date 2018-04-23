@@ -4,9 +4,11 @@
 \alias{punchOff}
 \title{punchOff}
 \usage{
-punchOff(category, notes)
+punchOff(name, category = NA, notes = NA)
 }
 \arguments{
+\item{name, }{string: person punching off}
+
 \item{category, }{string: category of work. Divide your work up into 'buckets'
 so you can track what part of the project you were working on. E.g. 'data analysis',
 'modelling', 'write up', 'meeting'. Need to match category assigned at punchOn().}
@@ -19,6 +21,6 @@ To be used in conjunction with punchOn().
 Time sheet will be located in /project/project_documents/time_management.
 }
 \examples{
-punchOff("factorisation", "Completed.")
+punchOff("Steph", "factorisation", "Completed.")
 
 }

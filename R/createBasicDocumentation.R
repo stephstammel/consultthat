@@ -1,11 +1,12 @@
 #' createBasicDocumentation
 #'
 #' This function will create a basic documentation for all of the data files
-#' in the /data folder for a project.
+#' in the /data folder for a project.It does this by downloading an .Rmd script
+#' from stephdesilva/consultthat_scripts repository and running it.
 #'
 #' Currently only operational for .csv files as a start point: more formats soon!
 #'
-#' Note, the file will be read as is: you may need to do some cleaning first.
+#' Note, the data file will be read as is: you may need to do some cleaning first.
 #' Suggest creating /data/raw and putting raw files there with cleaning script.
 #'
 #'
@@ -26,6 +27,10 @@ createBasicDocumentation <- function(){
 
 
   files <- list.files(path = data_directory, recursive = FALSE)
+  if(length(files) == 0){
+    stop("No readable data in /data."
+    )
+  }
   for (i in 1:length(files)){
       rmarkdown::render(paste(data_directory,"/documentation/basicDocumentation.rmd", sep = ""),
              params = list(nameFile = files[i],
