@@ -94,7 +94,7 @@ Project initiation coems with alot of documentation - requests for proposals, re
 
 ### Time Management
 
-Time management 
+Time management can be a pain in the posterior distribution, but when you're charging by the hour, it's essential. This folder can be used for that in conjunction with the `punchOn()` and `punchOff()` functions.
 
 ## Outputs
 

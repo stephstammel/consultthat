@@ -13,6 +13,7 @@
 #' Output as a .csv, this is readable for those who may not be using R. You can read
 #' it into R and calculate time spent etc. as required.
 #'
+#' @param name, string: person who is punching on for this project
 #' @param category, string: category of work. Divide your work up into 'buckets'
 #' so you can track what part of the project you were working on. E.g. 'data analysis',
 #' 'modelling', 'write up', 'meeting'.
@@ -22,12 +23,13 @@
 #'
 #' @examples
 #'
-#' punchOn("clean data", "Steph")
+#' punchOn("Steph", "clean data", "it's a mess")
 #'
-punchOn <- function(category, notes){
+punchOn <- function(name, category, notes){
 
   current_project <- getwd()
-  time_file <- paste(current_project, "project_documents", "time_management", "time_sheet.csv", sep = "/")
+  file_name <- paste(name, "time_sheet.csv", sep = "_")
+  time_file <- paste(current_project, "project_documents", "time_management", file_name, sep = "/")
 
   if(!file.exists(time_file)){
     time_log <- data.frame("project" = current_project, "category" = category,

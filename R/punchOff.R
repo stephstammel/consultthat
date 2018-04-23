@@ -4,6 +4,7 @@
 #' To be used in conjunction with punchOn().
 #' Time sheet will be located in /project/project_documents/time_management.
 #'
+#' @param name, string: person punching off
 #' @param category, string: category of work. Divide your work up into 'buckets'
 #' so you can track what part of the project you were working on. E.g. 'data analysis',
 #' 'modelling', 'write up', 'meeting'. Need to match category assigned at punchOn().
@@ -13,15 +14,17 @@
 #' @export
 #'
 #' @examples
-#' punchOff("factorisation", "Completed.")
+#' punchOff("Steph", "factorisation", "Completed.")
 #'
-punchOff <- function(category, notes){
+punchOff <- function(name, category, notes){
 
   current_project <- getwd()
-  time_file <- paste(current_project, "project_documents", "time_management", "time_sheet.csv", sep = "/")
+  file_name <- paste(name, "time_sheet.csv", sep = "_")
+  time_file <- paste(current_project, "project_documents", "time_management", file_name, sep = "/")
 
   if(!file.exists(time_file)){
-    stop("No timesheet exists for this project. You can't punch off when you never punched on :)")
+    stop("No timesheet exists for this project/person.
+         You can't punch off when you never punched on :)")
   } else {
     time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE, sep = ",",
                                 colClasses = rep('character',6))
