@@ -8,11 +8,17 @@ createBasicDocumentation()
 }
 \description{
 This function will create a basic documentation for all of the data files
-in the /data folder for a project.
+in the /data folder for a project.It does this by downloading an .Rmd script
+from stephdesilva/consultthat_scripts repository and running it.
 }
 \details{
 Currently only operational for .csv files as a start point: more formats soon!
 
-Note, the file will be read as is: you may need to do some cleaning first.
+Note, the data file will be read as is: you may need to do some cleaning first.
 Suggest creating /data/raw and putting raw files there with cleaning script.
+}
+\examples{
+
+createBasicDocumentation()
+
 }

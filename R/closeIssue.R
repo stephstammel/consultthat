@@ -9,9 +9,6 @@
 #'
 #' @export
 #'
-#' @examples
-#'
-#' closeIssue("Steph", "stupid bug 3", "Used bug tracker. It was awesome.")
 #'
 closeIssue <- function(user, ID, notes = NA){
   current_project <- getwd()

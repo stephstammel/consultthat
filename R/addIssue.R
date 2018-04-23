@@ -15,7 +15,6 @@
 #'
 #' @export
 #'
-#' @examples addIssue("stupid bug 3", "Steph", "breaking code", "Missing bracket?")
 #'
 #'
 addIssue <- function(ID, user, category = NA, notes = NA){

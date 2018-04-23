@@ -15,7 +15,7 @@ It's also useful as you're switching between projects or repeat clients to remem
 
 To add a person to the personnel log, use the `addPersonnel()` function. If a personnel log has not been created for this client, the function will create one. A client needs to be created before a personnel log for the client.
 
-```{r createClient, echo = TRUE}
+```{r createClient, echo = TRUE, eval = FALSE}
 library(consultthat)
 clientPath <- "~/practice"
 clientName <- "R_is_great"
@@ -25,7 +25,7 @@ createClient(clientName, clientPath)
 This information is stored as a `.csv` so that non-R users on your project can add to, access and edit it easily. 
 
 
-```{r addPeople, echo = TRUE}
+```{r addPeople, echo = TRUE, eval = FALSE}
 
 personName <- "Joanna Blogs"
 contactDetails <- "joBlogs@RStars.com"
@@ -40,7 +40,7 @@ addPersonnel(clientPath, clientName,
 
 You can go on and add all the people you'd like to remember from one project to another. (This function may be inspired by my terrible memory for both people and numbers.)
 
-```{r morePeople, echo = TRUE}
+```{r morePeople, echo = TRUE, eval = FALSE}
 personName <- "Daenerys Targarean"
 contactDetails <- "dragons@RStars.com"
 projects <- "Bending continents to her will, also something with SQL."
@@ -54,7 +54,7 @@ addPersonnel(clientPath, clientName,
 
 You can return your personnel list for a client at any time from within your project with `people()`.
 
-```{r findPeople, echo = TRUE}
+```{r findPeople, echo = TRUE, eval = FALSE}
 people(clientPath, clientName)
 ```
 
