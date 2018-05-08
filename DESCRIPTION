@@ -1,7 +1,7 @@
 Package: consultthat
 Type: Package
 Title: Workflow tools for consultants using R
-Version: 0.1.0
+Version: 0.1.1
 Author: Steph de Silva 
 Maintainer: Steph de Silva <steph@rex-analytics.com>
 Description: Workflow tools for consultants using R.

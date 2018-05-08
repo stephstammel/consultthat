@@ -31,7 +31,7 @@ punchOff <- function(name, category = NA, notes = NA){
     if (time_log[nrow(time_log), 6] == "off"){
       stop("You're already punched off for this client.")
     }
-    time_log[nrow(time_log), 5] <- Sys.time()
+    time_log[nrow(time_log), 5] <- as.numeric(Sys.time())
     time_log[nrow(time_log), 6] <- "off"
 
   }
