@@ -24,8 +24,3 @@ A simple way to keep track of issues you want to follow up. Add an issue,
 it will be added to a .csv which is accessible to non-R users. If no issue
 tracker for this project exists, one will be created.
 }
-\examples{
-addIssue("stupid bug 3", "Steph", "breaking code", "Missing bracket?")
-
-
-}
