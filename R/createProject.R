@@ -11,6 +11,7 @@
 #' @param project_documents string: the consulting project documents you want in this project, see Details
 #'
 #' @importFrom usethis create_package
+#' @importFrom purrr walk
 #' @export
 #'
 #' @examples
