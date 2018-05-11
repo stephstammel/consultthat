@@ -8,7 +8,7 @@
 #' @param client, string: name of client
 #' @param project_name, string: name of project
 #'
-
+#' @importFrom usethis create_package
 #' @export
 #'
 #' @examples
