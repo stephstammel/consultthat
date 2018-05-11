@@ -4,9 +4,11 @@
 #' normal package structure and provides subdirectories for data, outputs (client
 #' facing and internal), meetings etc.
 #'
-#' @param consult_path, string: path that consulting projects lie on
+#' @param consult_path, string: path that consulting projects lie on, OR full path to directory
 #' @param client, string: name of client
 #' @param project_name, string: name of project
+#' @param overwrite_project_documents logical: should existing project_documents directories be overwritten?
+#' @param project_documents string: the consulting project documents you want in this project, see Details
 #'
 #' @importFrom usethis create_package
 #' @export
@@ -17,58 +19,63 @@
 #'
 #'
 #'
-createProject <- function(consult_path, client, project_name){
-  requireNamespace("usethis")
-  project_path <- paste(consult_path, client, project_name, sep = "/")
-  if (dir.exists(project_path)){
-    stop("this project already exists! Go you!")
-  }
-  usethis::create_package(project_path)
+createProject <- function(consult_path = ".", client = NULL, project_name = NULL,
+                          overwrite_project_documents = FALSE,
+                          project_documents = c("meetings", "documents", "initiation",
+                                               "financials", "time", "planning",
+                                               "milestones", "outputs", "data", "documentation")){
 
-  # create subdirectory for project documents
-  output_path <- paste(project_path, "project_documents", sep = "/")
-  dir.create(output_path)
-  # create subdirectory for meetings
-  meeting_path <- paste(project_path,"project_documents", "meetings", sep = "/")
-  dir.create(meeting_path)
-  # create subdirectory for client side project docs
-  output_path <- paste(project_path, "project_documents", "client_side", sep = "/")
-  dir.create(output_path)
-  # create subdirectory for company side project docs
-  output_path <- paste(project_path, "project_documents", "company_side", sep = "/")
-  dir.create(output_path)
-  # project initiation documents
-  output_path <- paste(project_path, "project_documents", "project_initiation", sep = "/")
-  dir.create(output_path)
-  # project financials documents
-  output_path <- paste(project_path, "project_documents", "financials", sep = "/")
-  dir.create(output_path)
-  output_path <- paste(project_path, "project_documents", "financials", "invoices_payable", sep = "/")
-  dir.create(output_path)
-  output_path <- paste(project_path, "project_documents", "financials", "invoices_receivable", sep = "/")
-  dir.create(output_path)
-  # projects time management documents
-  output_path <- paste(project_path, "project_documents", "time_management", sep = "/")
-  dir.create(output_path)
-  # projects planning documents
-  output_path <- paste(project_path, "project_documents", "planning", sep = "/")
-  dir.create(output_path)
-  # mielstones summaries
-  output_path <- paste(project_path, "project_documents", "planning", "milestone_summaries", sep = "/")
-  dir.create(output_path)
-  # create subdirectory for outputs
-  output_path <- paste(project_path, "outputs", sep = "/")
-  dir.create(output_path)
-  # create subdirectory for data
-  data_path <- paste(project_path, "data", sep = "/")
-  dir.create(data_path)
-  # create sub-subdirectory internal documents
-  internal_path <- paste(project_path, "outputs", "internal", sep = "/")
-  dir.create(internal_path)
-  # create sub-subdirectory client-facing documents
-  client_facing_path <- paste(project_path, "outputs", "client_facing", sep = "/")
-  dir.create(client_facing_path)
-  # create sub-subdirectory for data documentation
-  data_doc_path <- paste(project_path, "data", "documentation", sep = "/")
-  dir.create(data_doc_path)
+  project_directories <- list(meetings = "meetings",
+                              documents = c("client_side", "company_side"),
+                              initiation = "initiation",
+                              financials = file.path("financials", c("invoices_payable", "invoices_receivable")),
+                              time = "time_management",
+                              planning = "planning",
+                              milestones = file.path("planning", "milestone_summaries"),
+                              outputs = file.path("outputs", c("internal", "client_facing")),
+                              data = "data",
+                              documentation = file.path("data", "documentation")
+  )
+
+  valid_documents <- intersect(project_documents, names(project_directories))
+  project_directories <- project_directories[valid_documents]
+  project_docs <- "project_documents"
+
+  project_path <- consult_path
+
+  if (!dir.exists(project_path)) {
+    dir.create(project_path, recursive = TRUE)
+  }
+
+  if (!is.null(client)) {
+    project_path <- file.path(project_path, client)
+    if (!dir.exists(project_path)) {
+      dir.create(project_path, recursive = TRUE)
+    }
+  }
+  if (!is.null(project_name)) {
+    project_path <- file.path(project_path, project_name)
+  }
+
+  if (dir.exists(file.path(project_path))) {
+    message("this project package already exists!")
+  } else {
+    usethis::create_package(project_path)
+  }
+
+  docs_path <- file.path(project_path, project_docs)
+
+  if (dir.exists(docs_path) && !overwrite_project_documents) {
+    message("project_documents subdirectory already exists, checking others ...")
+  }
+
+  for (ipath in names(project_directories)) {
+    output_path <- file.path(docs_path, project_directories[[ipath]])
+
+    if (dir.exists(output_path[1]) && !overwrite_project_documents) {
+      warning(paste0(ipath, " sub-directory already exists, use 'overwrite_project_documents = TRUE' to overwrite it!"))
+    }  else {
+      purrr::walk(output_path, dir.create, recursive = TRUE)
+    }
+  }
 }
