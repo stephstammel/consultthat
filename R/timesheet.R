@@ -23,6 +23,12 @@ timesheet <- function(name){
   } else {
     time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE)
     time_log <- as.data.frame(time_log)
+
+    # parse punch times to a nice datetime format
+    time_log$punch_off <- as.POSIXct(time_log$punch_off, origin = "1970-01-01")
+    time_log$punch_on <- as.POSIXct(time_log$punch_on, origin = "1970-01-01")
+
+
   }
   return(time_log)
 }
