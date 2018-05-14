@@ -7,7 +7,8 @@
 createProject(consult_path = ".", client = NULL, project_name = NULL,
   overwrite = FALSE, project_documents = c("meetings", "documents",
   "initiation", "financials", "time", "planning", "milestones", "outputs",
-  "data", "documentation"), ...)
+  "data", "documentation"), documents_directory = "project_documents",
+  use_package = TRUE)
 }
 \arguments{
 \item{consult_path}{string: path that consulting projects lie on, OR full path to directory}
@@ -20,7 +21,9 @@ createProject(consult_path = ".", client = NULL, project_name = NULL,
 
 \item{project_documents}{string: the consulting project documents you want in this project, see Details}
 
-\item{...}{other parameters to \code{usethis::create_package}}
+\item{documents_directory}{string: what sub-directory should the project documents be in? Default is \code{project_documents}}
+
+\item{use_package}{logical: should a package structure be used, or just create the directory? default is \code{TRUE}}
 }
 \description{
 Create a package structure for a new consulting project. This builds on the

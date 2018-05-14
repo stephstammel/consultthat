@@ -9,6 +9,8 @@
 #' @param project_name string: name of project
 #' @param overwrite logical: should existing project_documents directories be overwritten?
 #' @param project_documents string: the consulting project documents you want in this project, see Details
+#' @param documents_directory string: what sub-directory should the project documents be in? Default is `project_documents`
+#' @param use_package logical: should a package structure be used, or just create the directory? default is `TRUE`
 #'
 #' @importFrom usethis create_package
 #' @importFrom purrr walk
@@ -24,7 +26,9 @@ createProject <- function(consult_path = ".", client = NULL, project_name = NULL
                           overwrite = FALSE,
                           project_documents = c("meetings", "documents", "initiation",
                                                "financials", "time", "planning",
-                                               "milestones", "outputs", "data", "documentation")){
+                                               "milestones", "outputs", "data", "documentation"),
+                          documents_directory = "project_documents",
+                          use_package = TRUE){
 
   project_directories <- list(meetings = "meetings",
                               documents = c("client_side", "company_side"),
@@ -40,7 +44,14 @@ createProject <- function(consult_path = ".", client = NULL, project_name = NULL
 
   valid_documents <- intersect(project_documents, names(project_directories))
   project_directories <- project_directories[valid_documents]
-  project_docs <- "project_documents"
+
+  if (is.null(documents_directory)) {
+    stop("The documents sub-directory cannot be NULL!")
+  }
+
+  if (nchar(documents_directory) < 2) {
+    stop("Please provide a longer name for the documents_directory sub-directory!")
+  }
 
   project_path <- consult_path
 
@@ -60,11 +71,14 @@ createProject <- function(consult_path = ".", client = NULL, project_name = NULL
 
   if (dir.exists(project_path) && (length(dir(project_path)) > 0)) {
     message("this project package already exists!")
-  } else {
+  } else if (use_package) {
     usethis::create_package(project_path)
   }
 
-  docs_path <- file.path(project_path, project_docs)
+  # put the used directory in the file so it can be queried later
+  cat(documents_directory, file = file.path(project_path, ".consultthat"))
+
+  docs_path <- file.path(project_path, documents_directory)
 
   if (dir.exists(docs_path) && !overwrite) {
     message("project_documents subdirectory already exists, checking others ...")
