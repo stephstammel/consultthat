@@ -45,18 +45,18 @@ punchOn <- function(name = NULL, category = NA, notes = NA, project = "."){
 
   if(!file.exists(time_file)){
     time_log <- data.frame("project" = current_project, "category" = category,
-                                 "notes" = notes, "punch_on" = as.numeric(Sys.time()),
-                                  "punch_off" = NA, "state" = "on")
+                                 "notes" = notes, "punch_on" = format(Sys.time(), usetz = FALSE),
+                                  "punch_off" = NA, "state" = "on", stringsAsFactors = FALSE)
   } else {
     time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE, sep = ",",
-                                colClasses = rep('character',6))
+                                colClasses = rep("character", 6))
     if (time_log[nrow(time_log), "state"] == "on"){
       print("You're already punched on for this project")
       time_log[nrow(time_log), "state"] <- "off"
-      time_log[nrow(time_log), "punch_off"] <- as.numeric(Sys.time())
+      time_log[nrow(time_log), "punch_off"] <- format(Sys.time(), usetz = FALSE)
 
     }
-    punch <- c(current_project, category, notes, as.numeric(Sys.time()), NA, "on")
+    punch <- c(current_project, category, notes, format(Sys.time(), usetz = FALSE), NA, "on")
     time_log <- rbind(time_log, punch)
   }
   utils::write.csv(time_log, file = time_file, row.names = FALSE)
