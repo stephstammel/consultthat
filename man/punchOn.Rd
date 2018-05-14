@@ -4,7 +4,7 @@
 \alias{punchOn}
 \title{punchOn}
 \usage{
-punchOn(name, category = NA, notes = NA)
+punchOn(name = NULL, category = NA, notes = NA, project = ".")
 }
 \arguments{
 \item{name, }{string: person who is punching on for this project}
@@ -14,6 +14,8 @@ so you can track what part of the project you were working on. E.g. 'data analys
 'modelling', 'write up', 'meeting'.}
 
 \item{notes, }{string: any notes you'd like to add}
+
+\item{project}{string: where is the project you are punching into}
 }
 \description{
 Record the time you spend on a project.
@@ -22,6 +24,9 @@ Record the time you spend on a project.
 punchOn will record the system time you started in the current working directory.
 The time sheet will be located in the client directory and will record all
 work for that client's projects. If the time sheet does not exist, it will create it.
+
+If you are \emph{already} punched on, then you will be punched off and punched back on. This makes
+it easy to switch \emph{categories} without punching off first.
 
 Time sheet will be located in /project/project_documents/time_management.
 

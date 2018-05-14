@@ -4,14 +4,23 @@
 \alias{createProject}
 \title{createProject}
 \usage{
-createProject(consult_path, client, project_name)
+createProject(consult_path = ".", client = NULL, project_name = NULL,
+  overwrite = FALSE, project_documents = c("meetings", "documents",
+  "initiation", "financials", "time", "planning", "milestones", "outputs",
+  "data", "documentation"), ...)
 }
 \arguments{
-\item{consult_path, }{string: path that consulting projects lie on}
+\item{consult_path}{string: path that consulting projects lie on, OR full path to directory}
 
-\item{client, }{string: name of client}
+\item{client}{string: name of client}
 
-\item{project_name, }{string: name of project}
+\item{project_name}{string: name of project}
+
+\item{overwrite}{logical: should existing project_documents directories be overwritten?}
+
+\item{project_documents}{string: the consulting project documents you want in this project, see Details}
+
+\item{...}{other parameters to \code{usethis::create_package}}
 }
 \description{
 Create a package structure for a new consulting project. This builds on the

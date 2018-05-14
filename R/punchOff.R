@@ -10,7 +10,7 @@
 #' 'modelling', 'write up', 'meeting'. Need to match category assigned at punchOn().
 #' @param notes, string: any notes you'd like to add
 #'
-#' @return
+#' @return NULL, writes to the time-log csv file
 #' @export
 #'
 #' @examples
