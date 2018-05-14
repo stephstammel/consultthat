@@ -32,13 +32,14 @@
 #'
 punchOn <- function(name = NULL, category = NA, notes = NA, project = "."){
 
-  project_dir <- rprojroot::find_root("DESCRIPTION", project)
+  document_dir <- findDocumentDirectory(project)
 
-  current_project <- basename(project_dir)
+  current_project <- basename(normalizePath(project))
+
   file_name <- paste(name, "time_sheet.csv", sep = "_")
-  time_file <- file.path(project_dir, "project_documents", "time_management", file_name, sep = "/")
+  time_file <- file.path(document_dir, "time_management", file_name)
 
-  if (!dir.exists(file.path(project_dir, "project_documents", "time_management"))) {
+  if (!dir.exists(file.path(document_dir, "time_management"))) {
     stop("The time management directory does not exist!\nYou need to run createProject first!")
   }
 
@@ -49,10 +50,10 @@ punchOn <- function(name = NULL, category = NA, notes = NA, project = "."){
   } else {
     time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE, sep = ",",
                                 colClasses = rep('character',6))
-    if (time_log[nrow(time_log), 6] == "on"){
+    if (time_log[nrow(time_log), "state"] == "on"){
       print("You're already punched on for this project")
-      time_log[nrow(time_log), 6] <- "off"
-      time_log[nrow(time_log), 5] <- as.numeric(Sys.time())
+      time_log[nrow(time_log), "state"] <- "off"
+      time_log[nrow(time_log), "punch_off"] <- as.numeric(Sys.time())
 
     }
     punch <- c(current_project, category, notes, as.numeric(Sys.time()), NA, "on")
