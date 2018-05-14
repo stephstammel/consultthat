@@ -4,16 +4,18 @@
 \alias{punchOff}
 \title{punchOff}
 \usage{
-punchOff(name, category = NA, notes = NA)
+punchOff(name, category = NA, notes = NA, project = ".")
 }
 \arguments{
-\item{name, }{string: person punching off}
+\item{name}{string: person punching off}
 
-\item{category, }{string: category of work. Divide your work up into 'buckets'
+\item{category}{string: category of work. Divide your work up into 'buckets'
 so you can track what part of the project you were working on. E.g. 'data analysis',
 'modelling', 'write up', 'meeting'. Need to match category assigned at punchOn().}
 
-\item{notes, }{string: any notes you'd like to add}
+\item{notes}{string: any notes you'd like to add}
+
+\item{project}{string: the path to the project to punch off, default is "."}
 }
 \value{
 NULL, writes to the time-log csv file

@@ -4,14 +4,16 @@
 \alias{closeIssue}
 \title{closeIssue}
 \usage{
-closeIssue(user, ID, notes = NA)
+closeIssue(user, ID, notes = NA, project = ".")
 }
 \arguments{
-\item{user, }{string: the person who closed the issue.}
+\item{user}{string: the person who closed the issue.}
 
-\item{ID, }{string: the ID of the issue you want to close.}
+\item{ID}{string: the ID of the issue you want to close.}
 
-\item{notes, }{string: any closing notes you want to add to the issue.}
+\item{notes}{string: any closing notes you want to add to the issue.}
+
+\item{project}{string: the project location}
 }
 \description{
 Close an issue you've previously logged.

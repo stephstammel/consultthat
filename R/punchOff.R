@@ -21,7 +21,6 @@ punchOff <- function(name, category = NA, notes = NA, project = "."){
 
   document_dir <- findDocumentDirectory(project)
 
-  current_project <- basename(normalizePath(project))
   file_name <- paste(name, "time_sheet.csv", sep = "_")
   time_file <- paste(document_dir, "time_management", file_name, sep = "/")
 

@@ -34,7 +34,7 @@ punchOn <- function(name = NULL, category = NA, notes = NA, project = "."){
 
   document_dir <- findDocumentDirectory(project)
 
-  current_project <- basename(normalizePath(project))
+  current_project <- basename(dirname(normalizePath(document_dir)))
 
   file_name <- paste(name, "time_sheet.csv", sep = "_")
   time_file <- file.path(document_dir, "time_management", file_name)
