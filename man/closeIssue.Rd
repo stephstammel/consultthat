@@ -17,8 +17,3 @@ closeIssue(user, ID, notes = NA)
 Close an issue you've previously logged.
 Add notes on how you closed it for future reference.
 }
-\examples{
-
-closeIssue("Steph", "stupid bug 3", "Used bug tracker. It was awesome.")
-
-}

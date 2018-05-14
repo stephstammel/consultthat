@@ -15,6 +15,9 @@ so you can track what part of the project you were working on. E.g. 'data analys
 
 \item{notes, }{string: any notes you'd like to add}
 }
+\value{
+NULL, writes to the time-log csv file
+}
 \description{
 Record when you finished working on a project, with notes.
 To be used in conjunction with punchOn().

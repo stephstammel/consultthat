@@ -6,6 +6,9 @@
 #' The time sheet will be located in the client directory and will record all
 #' work for that client's projects. If the time sheet does not exist, it will create it.
 #'
+#' If you are *already* punched on, then you will be punched off and punched back on. This makes
+#' it easy to switch *categories* without punching off first.
+#'
 #' Time sheet will be located in /project/project_documents/time_management.
 #'
 #' Note: this is tidy time sheet management. Each project can generate a timesheet,
@@ -18,18 +21,26 @@
 #' so you can track what part of the project you were working on. E.g. 'data analysis',
 #' 'modelling', 'write up', 'meeting'.
 #' @param notes, string: any notes you'd like to add
+#' @param project string: where is the project you are punching into
 #'
+#' @importFrom rprojroot find_root
 #' @export
 #'
 #' @examples
 #'
 #' punchOn("Steph", "clean data", "it's a mess")
 #'
-punchOn <- function(name, category = NA, notes = NA){
+punchOn <- function(name = NULL, category = NA, notes = NA, project = "."){
 
-  current_project <- getwd()
+  project_dir <- rprojroot::find_root("DESCRIPTION", project)
+
+  current_project <- basename(project_dir)
   file_name <- paste(name, "time_sheet.csv", sep = "_")
-  time_file <- paste(current_project, "project_documents", "time_management", file_name, sep = "/")
+  time_file <- file.path(project_dir, "project_documents", "time_management", file_name, sep = "/")
+
+  if (!dir.exists(file.path(project_dir, "project_documents", "time_management"))) {
+    stop("The time management directory does not exist!\nYou need to run createProject first!")
+  }
 
   if(!file.exists(time_file)){
     time_log <- data.frame("project" = current_project, "category" = category,
@@ -38,10 +49,10 @@ punchOn <- function(name, category = NA, notes = NA){
   } else {
     time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE, sep = ",",
                                 colClasses = rep('character',6))
-    if (time_log[nrow(time_log), 6] == "on"){
-      print("You're already punched on for this project")
-      time_log[nrow(time_log), 6] <- "off"
-      time_log[nrow(time_log), 5] <- Sys.time()
+    if (time_log[nrow(time_log), "state"] == "on"){
+      message("You're already punched on for this project")
+      time_log[nrow(time_log), "state"] <- "off"
+      time_log[nrow(time_log), "punch_off"] <- Sys.time()
     }
     punch <- c(current_project, category, notes, Sys.time(), NA, "on")
     time_log <- rbind(time_log, punch)
