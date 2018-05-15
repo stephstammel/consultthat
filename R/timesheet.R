@@ -6,6 +6,7 @@
 #'
 #' @param name, person you'd like to return a timesheet for
 #' @param project the project you want the timesheet for
+#'
 #' @return timesheet, a data frame.
 #' @export
 #'
@@ -22,13 +23,7 @@ timesheet <- function(name, project = "."){
     time_log <- NULL
     stop("No timesheet exists for this project/person. Please punch on.")
   } else {
-    time_log <- utils::read.table(time_file, sep = ",", header = TRUE, stringsAsFactors = FALSE)
-
-    # parse punch times to a nice datetime format
-    time_log$punch_off <- as.POSIXct(time_log$punch_off, origin = "1970-01-01")
-    time_log$punch_on <- as.POSIXct(time_log$punch_on, origin = "1970-01-01")
-
-
+    time_log <- utils::read.table(time_file, header = TRUE, stringsAsFactors = FALSE, sep = ",")
   }
   return(time_log)
 }
