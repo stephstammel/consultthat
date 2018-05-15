@@ -10,15 +10,38 @@
 #' @param overwrite logical: should existing project_documents directories be overwritten?
 #' @param project_documents string: the consulting project documents you want in this project, see Details
 #' @param documents_directory string: what sub-directory should the project documents be in? Default is `project_documents`
-#' @param use_package logical: should a package structure be used, or just create the directory? default is `TRUE`
+#' @param use_package logical: should a package structure be used, or just create the directory? default is `FALSE`
 #'
 #' @importFrom usethis create_package
 #' @importFrom purrr walk
 #' @export
 #'
 #' @examples
-#' createProject("~/practice", "RStars", "firstProject")
+#' # set a temp loc to create projects in
+#' tmp_loc <- tempfile()
 #'
+#' # giving all three pieces
+#' createProject(tmp_loc, "RStars", "firstProject")
+#' # see all the directories that get created
+#' dir(file.path(tmp_loc, "RStars", "firstProject"), recursive = TRUE, include.dirs = TRUE)
+#'
+#' # giving a single path
+#' createProject(file.path(tmp_loc, "RStars", "secondProject))
+#'
+#' # using only a subset of documents
+#' createProject(tmp_loc, "RStars", "thirdProject", project_documents = c("time", "issues"))
+#' # see only some sub-directories
+#' dir(file.path(tmp_loc, "RStars", "thirdProject"), recursive = TRUE, include.dirs = TRUE)
+#'
+#' # change the documents_directory
+#' createProject(tmp_loc, "RStars", "fourthProject", documents_directory = "consulting_documents")
+#' dir(file.path(tmp_loc, "RStars", "fourthProject"), recursive = TRUE, include.dirs = TRUE)
+#'
+#' \dontrun{
+#' # not run, create an R package
+#' createProject(tmp_loc, "RStars", "packageProject")
+#' dir(file.path(tmp_loc, "RStars", "packageProject"), recursive = TRUE, include.dirs = TRUE)
+#' }
 #'
 #'
 #'
@@ -28,7 +51,7 @@ createProject <- function(consult_path = ".", client = NULL, project_name = NULL
                                                "financials", "time", "planning",
                                                "milestones", "outputs", "data", "documentation"),
                           documents_directory = "project_documents",
-                          use_package = TRUE){
+                          use_package = FALSE){
 
   project_directories <- list(meetings = "meetings",
                               documents = c("client_side", "company_side"),
