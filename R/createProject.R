@@ -12,6 +12,24 @@
 #' @param documents_directory string: what sub-directory should the project documents be in? Default is `project_documents`
 #' @param use_package logical: should a package structure be used, or just create the directory? default is `FALSE`
 #'
+#' @details By default, the project directory is created, and then by default a set of sub-directories
+#' to help manage consulting projects under **project_documents** (can be changed by `documents_directory`).
+#' The directories are:
+#'
+#' * meetings: `meetings``
+#' * documents: `client_side`, `company_side`
+#' * initiation: `initiation`
+#' * financials: `financials/invoices_payable`, `financials/invoices_receivable`
+#' * time: `time_management`
+#' * planning: `planning`
+#' * milestones: `planning/milestone_summaries`
+#' * outputs: `outputs/internal`, `outputs/client_facing`
+#' * data: `data`
+#' * documentation: `data/documentation`
+#'
+#' Controlling which are created uses the `project_documents` variable, giving
+#' a string denoting which group will be created. See the `examples`.
+#'
 #' @importFrom usethis create_package
 #' @importFrom purrr walk
 #' @export
@@ -26,7 +44,7 @@
 #' dir(file.path(tmp_loc, "RStars", "firstProject"), recursive = TRUE, include.dirs = TRUE)
 #'
 #' # giving a single path
-#' createProject(file.path(tmp_loc, "RStars", "secondProject))
+#' createProject(file.path(tmp_loc, "RStars", "secondProject"))
 #'
 #' # using only a subset of documents
 #' createProject(tmp_loc, "RStars", "thirdProject", project_documents = c("time", "issues"))
@@ -39,7 +57,7 @@
 #'
 #' \dontrun{
 #' # not run, create an R package
-#' createProject(tmp_loc, "RStars", "packageProject")
+#' createProject(tmp_loc, "RStars", "packageProject", use_package = TRUE)
 #' dir(file.path(tmp_loc, "RStars", "packageProject"), recursive = TRUE, include.dirs = TRUE)
 #' }
 #'
@@ -96,6 +114,8 @@ createProject <- function(consult_path = ".", client = NULL, project_name = NULL
     message("this project package already exists!")
   } else if (use_package) {
     usethis::create_package(project_path)
+  } else if (!dir.exists(project_path)) {
+    dir.create(project_path, recursive = TRUE)
   }
 
   # put the used directory in the file so it can be queried later
