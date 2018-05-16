@@ -2,7 +2,11 @@ Package: consultthat
 Type: Package
 Title: Workflow tools for consultants using R
 Version: 0.1.1
-Author: Steph de Silva 
+Author: c(
+    person("Steph", "de Silva",  "steph@rex-analytics.com", role = c("aut", "cre")),
+    person("Robert M.", "Flight", "rflight79@gmail.com", role = c("aut"),
+    person("Ross", "Ireland", "ross@trendlock.com.au", role = c("aut")))
+  )
 Maintainer: Steph de Silva <steph@rex-analytics.com>
 Description: Workflow tools for consultants using R.
     Setting up a new project can be time consuming for consultants. While there
