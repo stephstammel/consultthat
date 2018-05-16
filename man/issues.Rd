@@ -4,7 +4,10 @@
 \alias{issues}
 \title{issues()}
 \usage{
-issues()
+issues(project = ".")
+}
+\arguments{
+\item{project}{string: the project to return issues for}
 }
 \value{
 issues, a data frame.

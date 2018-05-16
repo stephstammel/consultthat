@@ -4,20 +4,22 @@
 \alias{addIssue}
 \title{addIssue}
 \usage{
-addIssue(ID, user, category = NA, notes = NA)
+addIssue(ID, user, category = NA, notes = NA, project = ".")
 }
 \arguments{
-\item{ID, }{string: choose an ID that you will use to close the issue or make changes to it.
+\item{ID}{string: choose an ID that you will use to close the issue or make changes to it.
 Can be numeric if you wish, or text based. E.g. "00001" or "that damn bug".}
 
-\item{user, }{string: who added this issue?}
+\item{user}{string: who added this issue?}
 
-\item{category, }{string: you can choose a category to file it under for later reference
+\item{category}{string: you can choose a category to file it under for later reference
 and analysis.}
 
-\item{notes, }{string: it's often worthwile to add some notes to help you when you
+\item{notes}{string: it's often worthwile to add some notes to help you when you
 pick up the project again. This might be a brief run down of what the problem is,
 or it could be a helpful way to store and file useful links, tips etc.}
+
+\item{project}{string: which project to add the issue to?}
 }
 \description{
 A simple way to keep track of issues you want to follow up. Add an issue,

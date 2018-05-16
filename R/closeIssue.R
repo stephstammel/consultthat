@@ -3,17 +3,20 @@
 #' Close an issue you've previously logged.
 #' Add notes on how you closed it for future reference.
 #'
-#' @param user, string: the person who closed the issue.
-#' @param ID, string: the ID of the issue you want to close.
-#' @param notes, string: any closing notes you want to add to the issue.
+#' @param user string: the person who closed the issue.
+#' @param ID string: the ID of the issue you want to close.
+#' @param notes string: any closing notes you want to add to the issue.
+#' @param project string: the project location
 #'
 #' @export
 #'
 #'
-closeIssue <- function(user, ID, notes = NA){
-  current_project <- getwd()
-  issue_file <- paste(current_project, "project_documents", "planning",
-                      "issues.csv", sep = "/")
+closeIssue <- function(user, ID, notes = NA, project = "."){
+
+  document_directory <- findDocumentDirectory(project)
+  current_project <- basename(dirname(normalizePath(document_directory)))
+  issue_file <- file.path(document_directory, "planning",
+                      "issues.csv")
   if(!file.exists(issue_file)){
     stop("You don't have any issues logged for this project.")
   } else {
