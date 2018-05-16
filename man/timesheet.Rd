@@ -4,10 +4,12 @@
 \alias{timesheet}
 \title{timesheet}
 \usage{
-timesheet(name)
+timesheet(name, project = ".")
 }
 \arguments{
 \item{name, }{person you'd like to return a timesheet for}
+
+\item{project}{the project you want the timesheet for}
 }
 \value{
 timesheet, a data frame.

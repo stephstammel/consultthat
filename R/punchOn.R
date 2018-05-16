@@ -32,29 +32,31 @@
 #'
 punchOn <- function(name = NULL, category = NA, notes = NA, project = "."){
 
-  project_dir <- rprojroot::find_root("DESCRIPTION", project)
+  document_dir <- findDocumentDirectory(project)
 
-  current_project <- basename(project_dir)
+  current_project <- basename(dirname(normalizePath(document_dir)))
+
   file_name <- paste(name, "time_sheet.csv", sep = "_")
-  time_file <- file.path(project_dir, "project_documents", "time_management", file_name, sep = "/")
+  time_file <- file.path(document_dir, "time_management", file_name)
 
-  if (!dir.exists(file.path(project_dir, "project_documents", "time_management"))) {
+  if (!dir.exists(file.path(document_dir, "time_management"))) {
     stop("The time management directory does not exist!\nYou need to run createProject first!")
   }
 
   if(!file.exists(time_file)){
     time_log <- data.frame("project" = current_project, "category" = category,
-                                 "notes" = notes, "punch_on" = Sys.time(),
-                                  "punch_off" = NA, "state" = "on")
+                                 "notes" = notes, "punch_on" = as.character(Sys.time(), usetz = FALSE),
+                                  "punch_off" = NA, "state" = "on", stringsAsFactors = FALSE)
   } else {
     time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE, sep = ",",
-                                colClasses = rep('character',6))
+                                colClasses = rep("character", 6))
     if (time_log[nrow(time_log), "state"] == "on"){
-      message("You're already punched on for this project")
+      print("You're already punched on for this project")
       time_log[nrow(time_log), "state"] <- "off"
-      time_log[nrow(time_log), "punch_off"] <- Sys.time()
+      time_log[nrow(time_log), "punch_off"] <- as.character(Sys.time(), usetz = FALSE)
+
     }
-    punch <- c(current_project, category, notes, Sys.time(), NA, "on")
+    punch <- c(current_project, category, notes, as.character(Sys.time(), usetz = FALSE), NA, "on")
     time_log <- rbind(time_log, punch)
   }
   utils::write.csv(time_log, file = time_file, row.names = FALSE)

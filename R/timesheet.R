@@ -5,24 +5,25 @@
 #' NULL will be returned instead.
 #'
 #' @param name, person you'd like to return a timesheet for
+#' @param project the project you want the timesheet for
+#'
 #' @return timesheet, a data frame.
 #' @export
 #'
 #' @examples
 #' timesheet("Gary")
 #'
-timesheet <- function(name){
+timesheet <- function(name, project = "."){
 
-  current_project <- getwd()
+  document_directory <- findDocumentDirectory(project)
   file_name <- paste(name, "time_sheet.csv", sep = "_")
-  time_file <- paste(current_project, "project_documents", "time_management", file_name, sep = "/")
+  time_file <- file.path(document_directory, "time_management", file_name)
 
   if(!file.exists(time_file)){
     time_log <- NULL
     stop("No timesheet exists for this project/person. Please punch on.")
   } else {
-    time_log <- utils::read.csv(time_file, stringsAsFactors = FALSE)
-    time_log <- as.data.frame(time_log)
+    time_log <- utils::read.table(time_file, header = TRUE, stringsAsFactors = FALSE, sep = ",")
   }
   return(time_log)
 }

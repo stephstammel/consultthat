@@ -7,7 +7,8 @@
 createProject(consult_path = ".", client = NULL, project_name = NULL,
   overwrite = FALSE, project_documents = c("meetings", "documents",
   "initiation", "financials", "time", "planning", "milestones", "outputs",
-  "data", "documentation"), ...)
+  "data", "documentation"), documents_directory = "project_documents",
+  use_package = FALSE)
 }
 \arguments{
 \item{consult_path}{string: path that consulting projects lie on, OR full path to directory}
@@ -20,16 +21,61 @@ createProject(consult_path = ".", client = NULL, project_name = NULL,
 
 \item{project_documents}{string: the consulting project documents you want in this project, see Details}
 
-\item{...}{other parameters to \code{usethis::create_package}}
+\item{documents_directory}{string: what sub-directory should the project documents be in? Default is \code{project_documents}}
+
+\item{use_package}{logical: should a package structure be used, or just create the directory? default is \code{FALSE}}
 }
 \description{
 Create a package structure for a new consulting project. This builds on the
 normal package structure and provides subdirectories for data, outputs (client
 facing and internal), meetings etc.
 }
-\examples{
-createProject("~/practice", "RStars", "firstProject")
+\details{
+By default, the project directory is created, and then by default a set of sub-directories
+to help manage consulting projects under \strong{project_documents} (can be changed by \code{documents_directory}).
+The directories are:
+\itemize{
+\item meetings: `meetings``
+\item documents: \code{client_side}, \code{company_side}
+\item initiation: \code{initiation}
+\item financials: \code{financials/invoices_payable}, \code{financials/invoices_receivable}
+\item time: \code{time_management}
+\item planning: \code{planning}
+\item milestones: \code{planning/milestone_summaries}
+\item outputs: \code{outputs/internal}, \code{outputs/client_facing}
+\item data: \code{data}
+\item documentation: \code{data/documentation}
+}
 
+Controlling which are created uses the \code{project_documents} variable, giving
+a string denoting which group will be created. See the \code{examples}.
+}
+\examples{
+# set a temp loc to create projects in
+tmp_loc <- tempfile()
+
+# giving all three pieces
+createProject(tmp_loc, "RStars", "firstProject")
+# see all the directories that get created
+dir(file.path(tmp_loc, "RStars", "firstProject"), recursive = TRUE, include.dirs = TRUE)
+
+# giving a single path
+createProject(file.path(tmp_loc, "RStars", "secondProject"))
+
+# using only a subset of documents
+createProject(tmp_loc, "RStars", "thirdProject", project_documents = c("time", "issues"))
+# see only some sub-directories
+dir(file.path(tmp_loc, "RStars", "thirdProject"), recursive = TRUE, include.dirs = TRUE)
+
+# change the documents_directory
+createProject(tmp_loc, "RStars", "fourthProject", documents_directory = "consulting_documents")
+dir(file.path(tmp_loc, "RStars", "fourthProject"), recursive = TRUE, include.dirs = TRUE)
+
+\dontrun{
+# not run, create an R package
+createProject(tmp_loc, "RStars", "packageProject", use_package = TRUE)
+dir(file.path(tmp_loc, "RStars", "packageProject"), recursive = TRUE, include.dirs = TRUE)
+}
 
 
 
