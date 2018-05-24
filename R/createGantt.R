@@ -8,6 +8,7 @@
 #' @param end date task should finish
 #' @param done percentage completion of task
 #' @param neededBy date completion required
+#' @param project, name of project
 #'
 #' @export
 #'
@@ -27,7 +28,7 @@
 #' createGantt(tasks[,1], tasks[,2], tasks[,3], tasks[,4], tasks[,5], tasks[,6])
 #'
 #'
-createGantt <- function(key, description, start, end, done, neededBy){
+createGantt <- function(key, description, start, end, done, neededBy, project){
   requireNamespace("plan", quietly = TRUE)
   document_dir <- findDocumentDirectory(project)
   file_name <- "gantt.csv"

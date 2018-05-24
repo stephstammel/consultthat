@@ -30,6 +30,6 @@ findDocumentDirectory <- function(project = "."){
 
   }
 
-  document_directory
+  return(document_directory)
 
 }
