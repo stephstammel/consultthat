@@ -28,6 +28,7 @@
 #'
 #'
 createGantt <- function(key, description, start, end, done, neededBy){
+  requireNamespace("plan", quietly = TRUE)
   document_dir <- findDocumentDirectory(project)
   file_name <- "gantt.csv"
   gantt_file <- file.path(document_dir, "project_initiation", file_name)
@@ -43,11 +44,10 @@ createGantt <- function(key, description, start, end, done, neededBy){
 
   require(plan)
 
-  gantt_df <- as.gantt(key, description, start, end, done, neededBy)
+  gantt_df <- plan::as.gantt(key, description, start, end, done, neededBy)
   utils:: write.csv(gantt_file, file = gantt_df, row.names = FALSE)
 
-  plot.gantt()
-
+  plan::plot.gantt()
 
 
 }
