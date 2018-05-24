@@ -17,10 +17,10 @@
 #' as.Date("2018/01/01"), as.Date("2018/01/02"), done = 72, neededBy = as.Date("2018/02/01"))
 #'
 #' task2 <- c("The Equalists = bad", "A Leaf in the Wind",
-#' as.Date("2018/01/18"), as.Date("2018/01/24"), done = 65, neededBy = asDate("2018/02/02"))
+#' as.Date("2018/01/18"), as.Date("2018/01/24"), done = 65, neededBy = as.Date("2018/02/02"))
 #'
 #' task3 <- c("Bolin gets captured!", "The Revelation",
-#' as.Date("2018/01/26"), as.Date("2018/01/30"), done = 50, neededBy = asDate("2018/02/05"))
+#' as.Date("2018/01/26"), as.Date("2018/01/30"), done = 50, neededBy = as.Date("2018/02/05"))
 #'
 #' tasks <- rbind(task1, task2, task3)
 #'

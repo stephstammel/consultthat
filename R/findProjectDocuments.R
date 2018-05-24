@@ -17,12 +17,17 @@ findDocumentDirectory <- function(project = "."){
     root_dir <- try(find_root(has_dir("project_documents"), path = project), silent = TRUE)
 
     if (inherits(root_dir, "try-error")) {
-      stop("Can't find either .consultthat or default directory project_documents, is project really a consultthat project?")
+      stop("Can't find either .consultthat or default directory project_documents, is project a consultthat project?")
     } else {
       document_directory <- file.path(root_dir, "project_documents")
     }
   } else {
-    document_directory <- file.path(root_dir, scan(file.path(root_dir, ".consultthat"), what = "character", sep = "\n", quiet = TRUE))
+    if (length(scan(file.path(root_dir, ".consultthat"))) == 0)
+      document_directory <- root_dir
+    else {
+      document_directory <- file.path(root_dir, scan(file.path(root_dir, ".consultthat"), what = "character", sep = "\n", quiet = TRUE))
+    }
+
   }
 
   document_directory
